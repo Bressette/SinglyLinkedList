@@ -82,7 +82,33 @@ struct node *removeElement(struct node *head, int index)
     return head;
 }
 
+struct node *insertAt(struct node *head, int index, int newElement)
+{
+    struct node *temp;
+}
 
+int sizeOfList(struct node *head)
+{
+    struct node *temp = head;
+    int newSize = 1;
+    if(head == NULL)
+    {
+        printf("The size of the list is 0");
+        return 0;
+    }
+
+    else
+    {
+
+
+    while(temp->next != NULL)
+    {
+        newSize++;
+        temp = temp->next;
+    }
+    return newSize++;
+    }
+}
 
 int get(struct node *head, int index)
 {
@@ -142,10 +168,11 @@ int main()
 
     head = removeLast(head);
     printList(head);
-    //head = removeLast(head);
-    //printList(head);
     head = removeElement(head, 1);
     printList(head);
+
+    int listSize = sizeOfList(head);
+    printf("The size of the list is %d element(s)", listSize);
 
     return 0;
 }
