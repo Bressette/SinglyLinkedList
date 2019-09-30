@@ -55,6 +55,35 @@ struct node *removeLast(struct node *head)
     return head;
 }
 
+struct node *removeElement(struct node *head, int index)
+{
+    struct node *temp = head;
+    struct node *prev = head;
+
+    if(head == NULL)
+    {
+        printf("The list is empty\n");
+        return;
+    }
+
+    else
+    {
+        for(int i = 0; i < index; i++)
+        {
+            prev = temp;
+            temp = temp->next;
+        }
+    }
+
+
+    prev->next = temp->next;
+    free(temp);
+
+    return head;
+}
+
+
+
 int get(struct node *head, int index)
 {
     struct node *temp = head;
@@ -113,7 +142,9 @@ int main()
 
     head = removeLast(head);
     printList(head);
-    head = removeLast(head);
+    //head = removeLast(head);
+    //printList(head);
+    head = removeElement(head, 1);
     printList(head);
 
     return 0;
