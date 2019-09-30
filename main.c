@@ -41,6 +41,20 @@ struct node *insertLast(struct node *head, int newElement)
 
 }
 
+struct node *removeLast(struct node *head)
+{
+    struct node *temp = head;
+
+    for(int i = 0; i < size-2; i++)
+    {
+
+        temp = temp->next;
+    }
+    temp->next = NULL;
+    size--;
+    return head;
+}
+
 int get(struct node *head, int index)
 {
     struct node *temp = head;
@@ -95,6 +109,11 @@ int main()
     head = insertLast(head, 4);
     head = insertLast(head, 5);
     head = insertLast(head, 6);
+    printList(head);
+
+    head = removeLast(head);
+    printList(head);
+    head = removeLast(head);
     printList(head);
 
     return 0;
