@@ -3,6 +3,7 @@
 
 int size = 0;
 
+//struct used for linked list recursively points to another struct node and holds int element
 struct node
 {
     int element;
@@ -13,12 +14,17 @@ struct node *insertLast(struct node *head, int newElement)
 {
     struct node *newNode, *temp;
 
+    //allocates space for a new node that will hold the new element
     newNode = (struct node *)malloc(sizeof(struct node));
+    //sets new node to the new element
     newNode->element = newElement;
+    //sets the next pointer to NULL as there is no node after newNode
     newNode->next = NULL;
 
+    //sets temp to head for iterating through the list
     temp = head;
 
+    //if size of list is 0 sets the list to newNode
     if(head == NULL)
     {
         head = newNode;
@@ -26,13 +32,12 @@ struct node *insertLast(struct node *head, int newElement)
 
     else
     {
-
-
+    //iterates while temp points to a valid element
         while(temp->next != NULL)
         {
             temp = temp->next;
         }
-
+    //inserts new node at the previously null next pointer
         temp->next = newNode;
     }
 
@@ -54,6 +59,30 @@ struct node *removeLast(struct node *head)
     size--;
     return head;
 }
+
+struct node *reverseListIterative(struct node *head)
+{
+    struct node *prev, *next, *current;
+    current = head;
+
+    //loop that reverses the elements by swapping pointers
+    while(current != NULL)
+    {
+        //sets the next pointer to point to the element after current position
+        next = current->next;
+        //the current position points backwards to previous
+        current->next = prev;
+        //previous and current are set to values for the next iteration
+        prev = current;
+        current = next;
+    }
+    //head is set to prev as prev will hold the final correct value of current
+    head = prev;
+
+
+    return head;
+}
+
 
 struct node *removeElement(struct node *head, int index)
 {
@@ -172,7 +201,13 @@ int main()
     printList(head);
 
     int listSize = sizeOfList(head);
-    printf("The size of the list is %d element(s)", listSize);
+    printf("The size of the list is %d element(s)\n", listSize);
+    head = insertLast(head, 10);
+    head = insertLast(head, 15);
+    head = insertLast(head, 20);
+    printList(head);
+    head = reverseListIterative(head);
+    printList(head);
 
     return 0;
 }
